@@ -1,0 +1,46 @@
+@import "base";
+
+$badgeSize: 36px;
+
+.badger-outter {
+  background: #fff;
+  border: 1px solid#ccc;
+  min-width: $badgeSize;
+  height: $badgeSize;
+  float: left;
+  position: absolute;
+  top: 0px - $badgeSize / 2;
+  right: 0px - $badgeSize / 2;
+  z-index: 9999;
+
+  @include border-radius($badgeSize);
+  @include box-shadow(0 1px 5px #ccc);
+}
+.badger-inner {
+  min-width: $badgeSize - ($badgeSize * .16);
+  height: $badgeSize - ($badgeSize * .16);
+  border-radius: ($badgeSize - ($badgeSize * .16)) / 2;
+  @include border-radius(($badgeSize - ($badgeSize * .16)) / 2);
+  background-color:  #f13c31;
+  @include background(linear-gradient(#f79690,#f13c31));
+  margin:  $badgeSize * .08;
+  z-index:  99999;
+}
+.badger-badge {
+  color: #fff;
+  padding: 2px 5px;
+  margin: 0;
+  text-align: center;
+  text-shadow:  0px -1px 1px #e01b0f;
+  z-index: 999999;
+}
+.badger-text {
+  font-weight: bold;
+  font-size: $badgeSize * .64;
+  line-height: $badgeSize * .64 + 2px;
+}
+.badger-number {
+  font-weight: bold;
+  font-size: $badgeSize * .64;
+  line-height: $badgeSize * .64 + 2px;
+}
