@@ -3,6 +3,8 @@
 //
 // http://twitter.com/ThrivingKings
 
+// Bug fix from Prasad - avoid duplicate badge
+
 (function( $ )
 	{
 	$.fn.badger = function(badge, settings, callback)
@@ -16,7 +18,12 @@
 			// use the badge id specified
 			? defaults.badge_id 
 			// create a random id; jquery does not like ids with periods in them
-			: '#Badger_' + Math.random().toString().replace('.',''); 
+			: 'Badger_' + Math.random().toString().replace('.','');
+
+		// Ensure presence of # in ID (jQuery friendly)
+		// We will eliminate # when creating the DOM element.
+		badge_id = '#' + badge_id.replace(/^#/, '');
+ 
 		var the_badge = badge_id+'_badge';
 		var badgerExists = this.find(badge_id).html();
 
@@ -47,10 +54,11 @@
 
 
 			// Don't add duplicates
+			// FIX: make sure # is eliminated when creating the element.
 			if(badgerExists)
 				{ this.find(the_badge).html(badge); }
 			else
-				{ this.append('<div class="badger-outter" id="'+badge_id+'"><div class="badger-inner"><p class="badger-badge" id="'+the_badge+'">'+badge+'</p></div></div>'); }
+				{ this.append('<div class="badger-outter" id="'+badge_id.replace(/^#/,'')+'"><div class="badger-inner"><p class="badger-badge" id="'+the_badge.replace(/^#/, '')+'">'+badge+'</p></div></div>'); }
 
 			// Badger text or number class
 			if(isNaN(badge))
