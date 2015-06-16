@@ -1,5 +1,5 @@
-Badger
-======
+NO LONGER SUPPORTED. USE AT YOUR OWN RISK.
+===
 
 Super sexy iOS style badges for jQuery
 
